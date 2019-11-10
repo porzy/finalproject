@@ -2,8 +2,8 @@ class CreateOrderItems < ActiveRecord::Migration[6.0]
   def change
     create_table :order_items do |t|
       t.integer :quantity
-      t.reference :product
-      t.reference :order
+      t.references :product
+      t.references :order
 
       t.timestamps
     end

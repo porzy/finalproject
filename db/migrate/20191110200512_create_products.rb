@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProducts < ActiveRecord::Migration[6.0]
   def change
     create_table :products do |t|
@@ -6,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.decimal :price
       t.integer :quantity
       t.string :image
-      t.reference :category
+      t.references :category
 
       t.timestamps
     end
