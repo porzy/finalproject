@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   # get 'carts/show'
-  get 'users/index'
-  get 'orders/index'
-  get '/order_items', to: 'order_items#index'
+  # get 'users/index'
+  # get 'orders/index'
+  get '/order_items', to: 'order_items#create'
   get '/categories', to: 'categories#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
