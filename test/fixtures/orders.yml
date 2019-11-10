@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  user: 
+  subtotal: 9.99
+  tax: 9.99
+  total_price: 9.99
+
+two:
+  status: MyString
+  user: 
+  subtotal: 9.99
+  tax: 9.99
+  total_price: 9.99
