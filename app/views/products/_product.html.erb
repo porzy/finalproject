@@ -1,3 +1,12 @@
+<h3>Search Products</h3>
+<%= form_tag(products_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <input type="radio" name="options" value="1"checked="checked">Product</input>
+  <input type="radio" name="options" value="2">Category</input>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+<br>
+
 <%= paginate @products%>
 <ul>
 <% @products.each do |product| %>

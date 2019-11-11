@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/about', to: 'companies#about'
-  get '/contact', to: 'companies#contact'
+  get '/about', to: 'abouts#index'
+  get '/contact', to: 'contacts#index'
   # get 'carts/show'
   # get 'users/index'
   get 'orders/index'
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/order_items/:id', to: 'order_items#destroy', id: /\d+/
   get '/categories', to: 'categories#index'
   get '/products/:id', to: 'products#show', id: /\d+/
+  get '/products', to: 'products#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

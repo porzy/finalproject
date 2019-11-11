@@ -1,0 +1,11 @@
+<h1>Contact Information</h1>
+<p>Headquarters: 135 Los Gatos Road in Arlen, Texas</p>
+<% @contact.each do |a|%>
+<p><%= a.name%></p>
+<ul>
+<li><%= a.title%>: <%= a.name%></li>
+<li>Phone: <%= a.phone%></li>
+<li>Email: <%= a.email%></li>
+<li>Location: <%= a.location%> </li>
+</ul>
+<% end %>
