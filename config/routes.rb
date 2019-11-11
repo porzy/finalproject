@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/about', to: 'companies#about'
+  get '/contact', to: 'companies#contact'
   # get 'carts/show'
   # get 'users/index'
   get 'orders/index'

@@ -10,11 +10,13 @@
   </head>
 
   <body>
-  <%= link_to 'Home', root_path%>   |
+    <%= link_to 'Home', root_path%>   |
     <%= link_to 'Cart', cart_path%>   |
     login   |
     logout   |
     register   |
+    <%= link_to 'About', about_path%>   |
+    <%= link_to 'Contact', contact_path%>   |
     <%= link_to 'Admin', admin_root_path, target: :_blank %>
     <%= yield %>
   </body>
