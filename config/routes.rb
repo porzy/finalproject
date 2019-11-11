@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/categories', to: 'categories#index'
   get '/products/:id', to: 'products#show', id: /\d+/
   get '/products', to: 'products#index'
-  get '/register', to: 'users#create'
+  get '/register', to: 'users#new'
   get '/login', to: 'users#login'
   get 'logout', to: 'users#destroy', as: 'logout'
   get '/products/category/:id', to: 'products#category'
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'products#index'
-  resource :cart, only: [:show]
+  resource :cart, only: [:show, :checkout]
 end
