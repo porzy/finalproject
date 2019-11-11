@@ -2,7 +2,7 @@
 
 class Order < ApplicationRecord
   # validates :status, :subtotal, :tax, :total_price, presence: true
-  belongs_to :user
+
   has_many :order_items
   before_save :update_total
   before_create :update_status
