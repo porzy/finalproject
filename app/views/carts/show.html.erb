@@ -5,7 +5,11 @@
     <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
   <% end %>
   <p>Subtotal: <%= number_to_currency current_order.total_price %></p>
-  <% tax = current_order.total_price * 0.12 %>
+  <% rate = 0.12
+  case
+
+  %>
+  <% tax = current_order.total_price * rate %>
   <p>tax: <%= number_to_currency tax %>
   <% total = tax * current_order.total_price %>
   <p>Total: <%= number_to_currency total %></p>
