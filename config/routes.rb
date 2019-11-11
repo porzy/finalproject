@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/categories', to: 'categories#index'
   get '/products/:id', to: 'products#show', id: /\d+/
   get '/products', to: 'products#index'
+  get '/register', to: 'users#create'
+  get '/login', to: 'users#login'
   get '/products/category/:id', to: 'products#category'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
