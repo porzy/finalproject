@@ -1,4 +1,4 @@
-<h1>Shopping Cart</h1>
+<h1>Checkout</h1>
 <% if @order_items.any? %>
   <% @order_items.each do |item| %>
     <p><%= item.product.title %> | <a href="/order_items/<%= item.id%>">Delete</a></p>
@@ -10,7 +10,7 @@
   <p>tax: <%= number_to_currency tax %>
   <% total = tax + current_order.total_price %>
   <p>Total: <%= number_to_currency total %></p>
-
+  <%= link_to 'Order' %>
 <% else %>
   <p>Your shopping cart is empty.</p>
 <% end %>
