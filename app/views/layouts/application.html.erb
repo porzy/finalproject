@@ -10,11 +10,18 @@
   </head>
 
   <body>
+<% if @current_user %>
+  Logged in as <%= current_user.name %>.
+<% end %>
+<br>
     <%= link_to 'Home', root_path%>   |
     <%= link_to 'Cart', cart_path%>   |
-    <%= link_to 'Login', login_path%>   |
-    logout   |
-    <%= link_to 'Register', register_path%>   |
+     <% if @current_user %>
+      <%= link_to 'Logout', logout_path%>   |
+    <% else %>
+      <%= link_to 'Login', login_path%>   |
+      <%= link_to 'Register', register_path%>   |
+    <% end %>
     <%= link_to 'About', about_path%>   |
     <%= link_to 'Contact', contact_path%>   |
     <%= link_to 'Admin', admin_root_path, target: :_blank %>

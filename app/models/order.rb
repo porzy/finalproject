@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  # validates :status, :subtotal, :tax, :total_price, presence: true
+  validates :status, :subtotal, :tax, :total_price, presence: true
 
   has_many :order_items
   before_save :update_total

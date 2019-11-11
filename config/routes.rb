@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/products', to: 'products#index'
   get '/register', to: 'users#create'
   get '/login', to: 'users#login'
+  get 'logout', to: 'users#destroy', as: 'logout'
   get '/products/category/:id', to: 'products#category'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
