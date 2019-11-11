@@ -1,0 +1,29 @@
+<h4>View by Category</h4>
+<a href="/products/category/2">Propane</a>
+<a href="/products/category/1">Accessories</a>
+<h3>Search Products</h3>
+<%= form_tag(products_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <input type="radio" name="options" value="1"checked="checked">Product</input>
+  <input type="radio" name="options" value="2">Category</input>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+<br>
+
+<%= paginate @products%>
+<ul>
+<% @products.each do |product| %>
+<li>
+<h5><a href="/products/<%= product.id%>"><%= product.title %></a></h5>
+<%= image_tag(product.image, :size => "100x100")%>
+<h6><%= number_to_currency product.price %></h6>
+<%= form_for @order_item do |f| %>
+    <%= f.hidden_field :product_id, value: product.id %>
+    <%= f.number_field :quantity, :value => 1 %>
+    <%= f.submit "Add to cart" %>
+  <% end %></p>
+</li>
+<% end %>
+</ul>
+
+<%= paginate @products%>

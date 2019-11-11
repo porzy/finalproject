@@ -18,6 +18,18 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
   end
 
+  def category
+    case params[:id].to_i
+    when 1
+      product = Product.joins(:category).where('categories.name LIKE ?', '%propane%').order(:name).page(params[:page])
+      @products = product || Product.order(:name).page(params[:page])
+    when 2
+      product = Product.joins(:category).where('categories.name LIKE ?', '%accessories%').order(:name).page(params[:page])
+      @products = product || Product.order(:name).page(params[:page])
+    end
+    @order_item = current_order.order_items.new
+  end
+
   def show
     @product = Product.find_by_id(params[:id])
     @order_item = current_order.order_items.new
