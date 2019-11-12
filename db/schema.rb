@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_200955) do
+ActiveRecord::Schema.define(version: 2019_11_12_023938) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "about"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 2019_11_11_200955) do
     t.string "location"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "name"
+    t.string "address"
+    t.string "postalcode"
+    t.integer "province_id"
+    t.integer "admin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["province_id"], name: "index_customers_on_province_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "product_id"
@@ -110,10 +124,9 @@ ActiveRecord::Schema.define(version: 2019_11_11_200955) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password"
-    t.integer "province_id"
     t.string "email"
+    t.integer "province_id"
     t.index ["province_id"], name: "index_users_on_province_id"
   end
 
-  add_foreign_key "users", "provinces"
 end

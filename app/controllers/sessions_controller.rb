@@ -4,19 +4,19 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user.password == params[:password]
+    user = Customer.find_by_email(params[:email])
+    if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to user
+      redirect_to root_url, notice: 'Logged in!'
     else
-      flash.now[:danger] = 'Bad email/password combination. Try again.'
+      flash.now[:alert] = 'Email or password is invalid'
       render 'new'
     end
   end
 
-  def delete
-    session.delete(:user_id, :order_id)
-    @current_user = nil
-    redirect_to root
+  def destroy
+    session[:user_id] = nil
+    session[:order_id] = nil
+    redirect_to root_url, notice: 'Logged out!'
   end
 end
