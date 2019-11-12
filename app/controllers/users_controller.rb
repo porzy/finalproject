@@ -32,7 +32,6 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to login_path
   end
 
   # PATCH/PUT /users/1
@@ -69,6 +68,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.permit(:name, :address, :province, :postalcode, :email)
+    params.permit(:name, :address, :postalcode, :email, :password, province: %i[id name])
   end
 end
