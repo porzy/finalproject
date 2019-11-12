@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <% current_user = Customer.find(session[:user_id])%>
+
 <% if current_user %>
   Logged in as <%= current_user.email %>.
 <% end %>
