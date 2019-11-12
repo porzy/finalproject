@@ -6,7 +6,7 @@
   <% end %>
   <p>Subtotal: <%= number_to_currency current_order.total_price %></p>
 
-  <% tax = current_order.total_price * current_user.province.tax %>
+  <% tax = current_order.total_price * 0.12#current_user.province.tax %>
   <p>tax: <%= number_to_currency tax %>
   <% total = tax + current_order.total_price %>
   <p>Total: <%= number_to_currency total %></p>

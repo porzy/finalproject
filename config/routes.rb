@@ -12,12 +12,16 @@ Rails.application.routes.draw do
   get '/products/:id', to: 'products#show', id: /\d+/
   get '/products', to: 'products#index'
   get '/register', to: 'users#new'
-  get '/login', to: 'users#login'
-  get 'logout', to: 'users#destroy', as: 'logout'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   get '/products/category/:id', to: 'products#category'
+  get '/checkout', to: 'carts#checkout'
+  get '/invoice', to: 'carts#invoice'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'products#index'
-  resource :cart, only: [:show, :checkout]
+  resource :cart, only: %i[show checkout invoice]
+  resource :users
 end
