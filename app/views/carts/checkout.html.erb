@@ -1,16 +1,61 @@
 <h1>Checkout</h1>
-<% if @order_items.any? %>
-  <% @order_items.each do |item| %>
-    <p><%= item.product.title %> | <a href="/order_items/<%= item.id%>">Delete</a></p>
-    <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
-  <% end %>
-  <p>Subtotal: <%= number_to_currency current_order.total_price %></p>
+<% if current_user %>
+  <p>
+    <strong>Email:</strong>
+    <%= current_user.email %>
+  </p>
 
-  <% tax = current_order.total_price *  current_user.province.tax %>
-  <p>tax: <%= number_to_currency tax %>
-  <% total = tax + current_order.total_price %>
-  <p>Total: <%= number_to_currency total %></p>
-  <%= link_to 'invoice', invoice_path %>
+  <p>
+    <strong>Name:</strong>
+    <%= current_user.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= current_user.address %>
+  </p>
+
+  <p>
+    <strong>Postalcode:</strong>
+    <%= current_user.postalcode %>
+  </p>
+
+  <p>
+    <strong>Province:</strong>
+    <%= current_user.province.name %>
+  </p>
+
 <% else %>
-  <p>Your shopping cart is empty.</p>
-<% end %>
+<p>Please register to checkout</p>
+<%= link_to 'Register', register_path%>
+<br>
+<%end%>
+<br>
+<% if @order_items.any? %>
+    <% @order_items.each do |item| %>
+      <p><%= item.product.title %> | <a href="/order_items/<%= item.id%>">Delete</a></p>
+      <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
+    <% end %>
+    <p>Subtotal: <%= number_to_currency current_order.total_price %></p>
+    <% if current_user %>
+      <% tax = current_order.total_price *  current_user.province.tax %>
+      <p>tax--<%= current_user.province.name%>: <%= number_to_currency tax %>
+    <% else %>
+      <% tax = current_order.total_price *  0.12 %>
+      <p>tax--mb: <%= number_to_currency tax %>
+    <% end %>
+    <% total = tax + current_order.total_price %>
+    <p>Total: <%= number_to_currency total %></p>
+    <% if current_user %>
+
+      <% form_tag(invoice_path, :method => "post") do %>
+        <%= label_tag(:q, "Credit Card Number") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Order") %>
+      <% end %>
+
+
+    <% end %>
+  <% else %>
+    <p>Your shopping cart is empty.</p>
+  <% end %>
