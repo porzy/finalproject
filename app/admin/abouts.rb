@@ -16,4 +16,13 @@ ActiveAdmin.register About do
   #   permitted
   # end
   permit_params :about, :image
+
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    f.inputs do
+      f.input :image, as: :file
+    end
+    f.actions
+  end
 end
