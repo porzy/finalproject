@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'orders/index'
   post '/order_items', to: 'order_items#create'
   get '/order_items/:id', to: 'order_items#destroy', id: /\d+/
-  get '/order_item/', to: 'order_items#update'
+  get '/order_item/:id', to: 'order_items#update', id: /\d+/
   get '/categories', to: 'categories#index'
   get '/products/:id', to: 'products#show', id: /\d+/
   get '/products', to: 'products#index'

@@ -23,10 +23,11 @@ class OrderItemsController < ApplicationController
     redirect_to cart_path
   end
 
-  def update_quantity
+  def update
     @order = current_order
     @item = @order.order_items.find(params['id'])
     @item.update_attribute(:quantity, params['q'])
+    @order.save
     redirect_to cart_path
   end
 end

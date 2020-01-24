@@ -1,14 +1,9 @@
 <h1>Shopping Cart</h1>
 <% if @order_items.any? %>
   <% @order_items.each do |item| %>
-    <p><%= item.product.title %> | <a href="/order_items/<%= item.id%>">Delete</a></p>
+    <p><%= item.product.title %> | <a href="/order_items/<%= item.id%>">Delete</a> | <a id="update" href="/order_item/<%= item.id%>?q=1" onclick="update()">Update</a></p>
     <p> Unit Price: <%= number_to_currency item.product.price %></p>
-
-    <%= form_for order_item_path do %>
-    <%= hidden_field_tag(:product_id, item.id) %>
-    <%= number_field(:quantity, item.quantity) %>
-    <%= submit_tag("Update") %>
-  <% end %>
+    <input type="number" id="quantity" value="<%= item.quantity%>">
      <p>Unit Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
   <% end %>
   <p>Subtotal: <%= number_to_currency current_order.total_price %></p>
@@ -16,3 +11,15 @@
 <% else %>
   <p>Your shopping cart is empty.</p>
 <% end %>
+
+<script>
+function update(){
+
+      var quantity = document.getElementById("quantity").value;
+      var newValue = "q="+quantity;
+      var link = document.getElementById("update")
+      var update = document.getElementById("update").href;
+      var newLink = update.replace("q=1", newValue);
+      link.setAttribute('href', newLink);
+}
+</script>
