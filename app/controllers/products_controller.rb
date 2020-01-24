@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
       when 2
         product = Product.joins(:category).where('categories.name LIKE ?', "%#{params[:search]}%").order(:name).page(params[:page])
         @products = product || Product.order(:name).page(params[:page])
+
       end
 
     else
@@ -25,6 +26,12 @@ class ProductsController < ApplicationController
       @products = product || Product.order(:name).page(params[:page])
     when 2
       product = Product.joins(:category).where('categories.name LIKE ?', '%accessories%').order(:name).page(params[:page])
+      @products = product || Product.order(:name).page(params[:page])
+    when 3
+      product = Product.where('created_at < ?', Date.today - 2).order(:name).page(params[:page])
+      @products = product || Product.order(:name).page(params[:page])
+    when 4
+      product = Product.where('updated_at < ?', Date.today - 2).order(:name).page(params[:page])
       @products = product || Product.order(:name).page(params[:page])
     end
     @order_item = current_order.order_items.new
